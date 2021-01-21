@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?= $thread['title'] ?> | Diskuzní fórum</title>
+
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Diskuzní fórum <a href="/">🏠</a></h1>
+    <h2>Vlákno: <?= $thread['title'] ?></h2>
+
+    <h3>Přidat komentář</h3>
+    <?= $formNewPost->render() ?>
+
+    <h3>Seznam komentářů</h3>
+    <div id="posts">
+        <?php foreach ($posts as $post) : ?>
+            <div id="post--<?= $post['id'] ?>">
+                <div class="post__avatar">
+                    <img src="https://www.gravatar.com/avatar/<?= md5($thread['author']) ?>" alt="Avatar uživatele" />
+
+                    <div>
+                        <span class="text-muted post__date">
+                            <?= date('d.m.Y H:i', strtotime($post['date_created'])) ?>
+                        </span>
+
+                        <a href="mailto:<?= htmlspecialchars($post['author']) ?>">
+                            <?= htmlspecialchars($post['author']) ?>
+                        </a>
+
+                        <span class="text-muted">
+                            autor napsal <?= $post['author_posts_count'] ?> komentářů
+                        </span>
+                    </div>
+                </div>
+                <div class="post__comment">
+                    <?= htmlspecialchars($post['content']) ?>
+                </div>
+            </div>
+        <?php endforeach ?>
+    </div>
+
+</div>
+</body>
+</html>

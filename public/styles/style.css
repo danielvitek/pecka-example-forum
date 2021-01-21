@@ -1,0 +1,136 @@
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofAnsSkZg.ttf) format('truetype');
+}
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #1e1f1c;
+}
+.container {
+  width: 1000px;
+  margin: 0 auto;
+}
+h1 {
+  margin: 5px 0 15px 0;
+}
+.text-muted {
+  color: #9fa298;
+}
+#threads > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#threads > div > div {
+  margin-bottom: 15px;
+}
+#threads > div .thread__name {
+  flex: 0 0 450px;
+}
+#threads > div .thread__name a {
+  color: #e9473f;
+}
+#threads > div .thread__author {
+  flex: 0 0 300px;
+}
+#threads > div .thread__author a {
+  display: flex;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+}
+#threads > div .thread__author a img {
+  height: 32px;
+  border-radius: 100%;
+  margin-right: 5px;
+}
+#threads > div .thread__created {
+  flex: 0 0 250px;
+}
+#posts > div {
+  display: flex;
+  margin-bottom: 50px;
+}
+#posts > div .post__avatar {
+  flex: 0 0 300px;
+  padding: 10px 0;
+  display: flex;
+  align-items: flex-start;
+}
+#posts > div .post__avatar > img {
+  width: 64px;
+  height: 64px;
+  margin-right: 15px;
+  border-radius: 100%;
+}
+#posts > div .post__avatar > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#posts > div .post__avatar > div a {
+  text-decoration: none;
+  color: #e9473f;
+}
+#posts > div .post__avatar > div .post__date {
+  font-size: 0.75rem;
+}
+#posts > div .post__comment {
+  flex: 1 0 700px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 10px;
+}
+form.fancyform {
+  display: flex;
+  flex-direction: column;
+}
+form.fancyform > div {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+}
+form.fancyform > div label {
+  flex: 0 0 150px;
+  font-size: 1rem;
+  padding-top: 4px;
+}
+form.fancyform > div input,
+form.fancyform > div textarea,
+form.fancyform > div select {
+  flex: 0 0 450px;
+  font-size: 1.2rem;
+  padding: 6px 8px;
+  -webkit-appearance: none;
+  border: 1px solid rgba(30, 31, 28, 0.15);
+  border-radius: 5px;
+}
+form.fancyform > div input:focus,
+form.fancyform > div textarea:focus,
+form.fancyform > div select:focus,
+form.fancyform > div input:active,
+form.fancyform > div textarea:active,
+form.fancyform > div select:active {
+  outline: 2px solid #e9473f;
+}
+form.fancyform > div span.error {
+  color: #e9473f;
+  flex: 0 0 150px;
+}
+form.fancyform > div .btn {
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+form.fancyform > div .btn.btn-lg {
+  font-size: 1.25rem;
+  padding: 8px 15px;
+}
+form.fancyform > div .btn.btn-primary {
+  background: #e9473f;
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */
