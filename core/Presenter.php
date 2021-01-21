@@ -64,8 +64,8 @@ abstract class Presenter
      */
     public function render($templateName = 'default'): void
     {
-        $escapedName = ucfirst(preg_replace('/[^a-z0-9]/', '', $templateName));
-        $presenterName = $this->reflection->getShortName();
+        $escapedName = preg_replace('/[^a-z0-9]/', '', $templateName);
+        $presenterName = ucfirst($this->reflection->getShortName());
 
         $path = __DIR__ . "/../app/views/{$presenterName}.{$escapedName}.phtml";
 
