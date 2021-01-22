@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Přehled vláken | Diskuzní fórum</title>
+<head>
+    <title>Přehled vláken | Diskuzní fórum</title>
 
-        <link rel="stylesheet" href="/styles/style.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Diskuzní fórum</h1>
-            <h2>Seznam vláken</h2>
-            <div id="threads">
-                <div>
-                    <div class="thread__name">Název vlákna</div>
-                    <div class="thread__author">Autor</div>
-                    <div class="thread__author">Založeno</div>
-                </div>
-                <?php foreach ($threads as $thread) : ?>
-                    <div>
-                        <div class="thread__name">
-                            <a href="thread/<?= $thread['name'] ?>">
-                                <?= htmlspecialchars($thread['title']) ?>
-                            </a>
-                        </div>
-                        <div class="thread__author">
-                            <a href="mailto:<?= htmlspecialchars($thread['author']) ?>">
-                                <img src="https://www.gravatar.com/avatar/<?= md5($thread['author']) ?>" alt="Avatar uživatele" />
-                                <span><?= htmlspecialchars($thread['author']) ?></span>
-                            </a>
-                        </div>
-                        <div class="thread__created">
-                            <?= date('d.m.Y H:i', strtotime($thread['date_created'])) ?>
-                        </div>
-                    </div>
-                <?php endforeach ?>
-            </div>
-
-            <h2>Nové vlákno</h2>
-            <?= $formNewThread->render() ?>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Diskuzní fórum</h1>
+    <h2>Seznam vláken</h2>
+    <div id="threads">
+        <div>
+            <div class="thread__name">Název vlákna</div>
+            <div class="thread__author">Autor</div>
+            <div class="thread__author">Založeno</div>
         </div>
-    </body>
+		<?php
+		foreach ($threads as $thread) : ?>
+            <div>
+                <div class="thread__name">
+                    <a href="thread/<?= $thread['name'] ?>">
+						<?= htmlspecialchars($thread['title']) ?>
+                    </a>
+                </div>
+                <div class="thread__author">
+                    <a href="mailto:<?= htmlspecialchars($thread['author']) ?>">
+                        <img src="https://www.gravatar.com/avatar/<?= md5($thread['author']) ?>" alt="Avatar uživatele"/>
+                        <span><?= htmlspecialchars($thread['author']) ?></span>
+                    </a>
+                </div>
+                <div class="thread__created">
+					<?= date('d.m.Y H:i', strtotime($thread['date_created'])) ?>
+                </div>
+            </div>
+		<?php
+		endforeach ?>
+    </div>
+
+    <h2>Nové vlákno</h2>
+	<?= $formNewThread->render() ?>
+</div>
+</body>
 </html>

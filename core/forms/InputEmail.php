@@ -6,16 +6,17 @@ namespace Core\Forms;
 
 class InputEmail extends FormControl
 {
-    /**
-     * Render text input
-     */
-    public function render() : void
-    {
-        $required = $this->required ? 'required' : '';
-        $value = $this->value ? 'value="' . htmlspecialchars($this->value) . '"' : '';
-        $errors = implode(', ', $this->errors);
 
-        echo <<<EOT
+	/**
+	 * Render text input
+	 */
+	public function render() : void
+	{
+		$required = $this->required ? 'required' : '';
+		$value = $this->value ? 'value="' . htmlspecialchars($this->value) . '"' : '';
+		$errors = implode(', ', $this->errors);
+
+		echo <<<EOT
                 <label>
                     {$this->label}
                 </label>
@@ -27,16 +28,18 @@ class InputEmail extends FormControl
                 >
                 <span class="error">{$errors}</span>
             EOT;
-    }
+	}
 
-    public function validate(): bool
-    {
-        parent::validate();
 
-        if (!filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
-            $this->errors[] = 'Hodnota není e-mail';
-        }
+	public function validate() : bool
+	{
+		parent::validate();
 
-        return empty($this->errors);
-    }
+		if (!filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
+			$this->errors[] = 'Hodnota není e-mail';
+		}
+
+		return empty($this->errors);
+	}
+
 }

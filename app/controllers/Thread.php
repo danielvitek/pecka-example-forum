@@ -13,81 +13,96 @@ use Core\Presenter;
 
 class Thread extends Presenter
 {
-    /**
-     * @var ThreadRepository
-     */
-    private ThreadRepository $threads;
 
-    /**
-     * @var array|null
-     */
-    private ?array $currentThread = [];
+	/**
+	 * @var ThreadRepository
+	 */
+	private ThreadRepository $threads;
 
-    /**
-     * Index constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->threads = new ThreadRepository();
-    }
+	/**
+	 * @var array|NULL
+	 */
+	private ?array $currentThread = [];
 
-    /**
-     * Setup controller
-     */
-    public function setup(): void
-    {
-        // Current thread
-        $this->currentThread = $this->threads->get($this->requestArgs[0]);
-        if (!$this->currentThread)
-            $this->redirect('/index');
 
-        // Form new post
-        $this->data->formNewPost = $this->getNewPostForm();
-        $this->data->formNewPost->process();
-    }
+	/**
+	 * Index constructor.
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->threads = new ThreadRepository();
+	}
 
-    /**
-     * @param string $name
-     */
-    public function process($name): void
-    {
-        $this->data->thread = $this->currentThread;
-        $this->data->posts = $this->threads->getThreadPosts($this->currentThread['id']);
 
-        $this->render();
-    }
+	/**
+	 * Setup controller
+	 */
+	public function setup() : void
+	{
+		// Current thread
+		$this->currentThread = $this->threads->get($this->requestArgs[0]);
+		if (!$this->currentThread) {
+			$this->redirect('/index');
+		}
 
-    /**
-     * @return Form
-     */
-    private function getNewPostForm(): Form
-    {
-        $form = new Form('post_form');
+		// Form new post
+		$this->data->formNewPost = $this->getNewPostForm();
+		$this->data->formNewPost->process();
+	}
 
-        $form->addControl(new InputEmail(
-            name: 'author',
-            label: 'Váš e-mail',
-            required: true,
-        ));
 
-        $form->addControl(new InputText(
-            name: 'content',
-            label: 'Komentář',
-            required: true,
-        ))->setMultiline(true);
+	/**
+	 * @return Form
+	 */
+	private function getNewPostForm() : Form
+	{
+		$form = new Form('post_form');
 
-        $form->addButton(new Button(
-            name: 'submit',
-            label: 'Přidat',
-        ));
+		$form->addControl(
+			new InputEmail(
+				name: 'author',
+				label: 'Váš e-mail',
+				required: TRUE,
+			)
+		);
 
-        $form->setCallback(function ($data) {
-            $postId = $this->threads->createPost($this->currentThread['id'], $data);
+		$form->addControl(
+			new InputText(
+				name: 'content',
+				label: 'Komentář',
+				required: TRUE,
+			)
+		)->setMultiline(TRUE);
 
-            $this->redirect("/thread/{$this->currentThread['name']}#post--" . $postId);
-        });
+		$form->addButton(
+			new Button(
+				name: 'submit',
+				label: 'Přidat',
+			)
+		);
 
-        return $form;
-    }
+		$form->setCallback(
+			function ($data) {
+				$postId = $this->threads->createPost($this->currentThread['id'], $data);
+
+				$this->redirect("/thread/{$this->currentThread['name']}#post--" . $postId);
+			}
+		);
+
+		return $form;
+	}
+
+
+	/**
+	 * @param string $name
+	 */
+	public function process($name) : void
+	{
+		$this->data->thread = $this->currentThread;
+		$this->data->posts = $this->threads->getThreadPosts($this->currentThread['id']);
+
+		$this->render();
+	}
+
 }

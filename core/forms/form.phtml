@@ -1,16 +1,22 @@
 <form method="post" class="fancyform">
 
-    <?php foreach ($form->getControls() as $control) : ?>
+	<?php
+	foreach ($form->getControls() as $control) : ?>
         <div>
-            <?php $control->render(); ?>
+			<?php
+			$control->render(); ?>
         </div>
-    <?php endforeach ?>
+	<?php
+	endforeach ?>
 
-    <?php foreach ($form->getButtons() as $button) : ?>
+	<?php
+	foreach ($form->getButtons() as $button) : ?>
         <div>
-            <?php $button->render(); ?>
+			<?php
+			$button->render(); ?>
         </div>
-    <?php endforeach ?>
+	<?php
+	endforeach ?>
 
     <input type="hidden" name="_id" value="<?= $form->formName ?>">
 </form>

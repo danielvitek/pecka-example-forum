@@ -6,32 +6,36 @@ namespace Core\Forms;
 
 class InputText extends FormControl
 {
-    /**
-     * @var bool Text or textarea
-     */
-    private bool $multiline = false;
 
-    /**
-     * Text or textarea
-     * @param bool $multiline
-     */
-    public function setMultiline(bool $multiline): void
-    {
-        $this->multiline = $multiline;
-    }
+	/**
+	 * @var bool Text or textarea
+	 */
+	private bool $multiline = FALSE;
 
-    /**
-     * Render text input
-     */
-    public function render() : void
-    {
-        $required = $this->required ? 'required' : '';
-        $errors = implode(', ', $this->errors);
 
-        if ($this->multiline) {
-            $value = $this->value ? htmlspecialchars($this->value) : '';
+	/**
+	 * Text or textarea
+	 *
+	 * @param bool $multiline
+	 */
+	public function setMultiline(bool $multiline) : void
+	{
+		$this->multiline = $multiline;
+	}
 
-            echo <<<EOT
+
+	/**
+	 * Render text input
+	 */
+	public function render() : void
+	{
+		$required = $this->required ? 'required' : '';
+		$errors = implode(', ', $this->errors);
+
+		if ($this->multiline) {
+			$value = $this->value ? htmlspecialchars($this->value) : '';
+
+			echo <<<EOT
                 <label>{$this->label}</label>
                 <textarea 
                         name="{$this->name}"
@@ -40,10 +44,10 @@ class InputText extends FormControl
                 >{$value}</textarea>
                 <span class="error">{$errors}</span>
             EOT;
-        } else {
-            $value = $this->value ? 'value="' . htmlspecialchars($this->value) . '"' : '';
+		} else {
+			$value = $this->value ? 'value="' . htmlspecialchars($this->value) . '"' : '';
 
-            echo <<<EOT
+			echo <<<EOT
                 <label>{$this->label}</label>
                 <input 
                     type="text"
@@ -53,16 +57,18 @@ class InputText extends FormControl
                 >
                 <span class="error">{$errors}</span>
             EOT;
-        }
-    }
+		}
+	}
 
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    public function validate(): bool
-    {
-        return parent::validate();
-    }
+
+	/**
+	 * @param mixed $value
+	 *
+	 * @return bool
+	 */
+	public function validate() : bool
+	{
+		return parent::validate();
+	}
+
 }

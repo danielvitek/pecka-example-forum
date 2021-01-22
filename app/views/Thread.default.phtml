@@ -11,14 +11,15 @@
     <h2>Vlákno: <?= $thread['title'] ?></h2>
 
     <h3>Přidat komentář</h3>
-    <?= $formNewPost->render() ?>
+	<?= $formNewPost->render() ?>
 
     <h3>Seznam komentářů</h3>
     <div id="posts">
-        <?php foreach ($posts as $post) : ?>
+		<?php
+		foreach ($posts as $post) : ?>
             <div id="post--<?= $post['id'] ?>">
                 <div class="post__avatar">
-                    <img src="https://www.gravatar.com/avatar/<?= md5($thread['author']) ?>" alt="Avatar uživatele" />
+                    <img src="https://www.gravatar.com/avatar/<?= md5($thread['author']) ?>" alt="Avatar uživatele"/>
 
                     <div>
                         <span class="text-muted post__date">
@@ -26,7 +27,7 @@
                         </span>
 
                         <a href="mailto:<?= htmlspecialchars($post['author']) ?>">
-                            <?= htmlspecialchars($post['author']) ?>
+							<?= htmlspecialchars($post['author']) ?>
                         </a>
 
                         <span class="text-muted">
@@ -35,10 +36,11 @@
                     </div>
                 </div>
                 <div class="post__comment">
-                    <?= htmlspecialchars($post['content']) ?>
+					<?= htmlspecialchars($post['content']) ?>
                 </div>
             </div>
-        <?php endforeach ?>
+		<?php
+		endforeach ?>
     </div>
 
 </div>

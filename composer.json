@@ -1,0 +1,16 @@
+{
+  "name": "vendor_name/pecka-example-forum",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "vitekd",
+      "email": "email@example.com"
+    }
+  ],
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*",
+    "pd/coding-standard": "^1.27"
+  }
+}

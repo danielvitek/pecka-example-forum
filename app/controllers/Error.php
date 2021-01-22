@@ -8,8 +8,10 @@ use Core\Presenter;
 
 class Error extends Presenter
 {
-    public function process()
-    {
-        $this->render();
-    }
+
+	public function process()
+	{
+		$this->render();
+	}
+
 }
